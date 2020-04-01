@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bio Details</title>
+</head>
+
+<body>
+    
+    <h1> View Data</h1>
+    {% csrf_token %}
+   {% for data in obj %}
+    <h3>Name : {{data.bname}}</h3>
+    <h3>Category : {{data.bcat}}</h3>
+    <h3>Type : {{data.btype}}</h3>
+    <h3>Symptoms : {{data.bsymt}}</h3>
+    <hr>
+    
+    {% endfor %}
+</body>
+</html>
+{% endblock %}

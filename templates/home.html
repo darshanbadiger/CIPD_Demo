@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bio Details</title>
+</head>
+
+<body>
+    
+    <h1>Insert Biological Details</h1>
+    <form method="POST">
+    {% csrf_token %}
+    <h3>Name : <input type="text" name="name"></h3>
+    <h3>Category : <input type="text" name="category"></h3>
+    <h3>Type : <input type="text" name="c_type"></h3>
+    <h3>Symptoms : <input type="text" name="symptoms"></h3>
+    <input type="submit" value="SUBMIT">
+    </form>
+
+    <h1>Get Biological Data</h1>
+    <form method="GET" action="{% url 'data' %}">
+        {% csrf_token %}
+        <input type="submit" value="VIEW">
+    </form>
+  
+</body>
+</html>
+{%endblock%}

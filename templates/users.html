@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content%}
+<title>User Details</title>
+<div class="super_container">
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form=group">
+            <legend class="border-bottom mb-8">Register User</legend>
+            {{form.as_p}}
+        </fieldset>
+        <div class="form-group">
+            <button class="btnbtn-outline-info" type="submit">Register</button>
+        </div>
+    </form>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Already Have An Account? 
+            <a class="ml-2" href="#">Sign In</a>
+        </small>
+    </div>
+
+</div>
+</div>
+
+
+{%endblock%}
