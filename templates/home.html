@@ -23,6 +23,13 @@
         {% csrf_token %}
         <input type="submit" value="VIEW">
     </form>
+
+    <h1>Search Biological Data</h1>
+    <form method="POST" action="{% url 'search' %}">
+        {% csrf_token %}
+        <input type="text" name = "srh" placeholder="Enter Name or category or type">
+        <input type="submit" value="SEARCH">
+    </form>
   
 </body>
 </html>

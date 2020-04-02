@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bio Details</title>
+</head>
+
+<body>
+    
+    <h1> View Data</h1>
+    {% csrf_token %}
+    {% if sr %}
+        {% for data in sr %}
+            <table>
+                 <tr>
+                    <td><h3>Name</h3></td>
+                    <td><h3>{{data.bname}}</h3></td>
+                 </tr>
+                 <tr>
+                    <td><h3>Category</h3></td>
+                    <td><h3>{{data.bcat}}</h3></td>
+                 </tr>
+                 <tr>
+                    <td><h3>Type</h3></td>
+                    <td><h3>{{data.btype}}</h3></td>
+                 </tr>
+                 <tr>
+                    <td><h3>Symptoms</h3></td>
+                    <td><h3>{{data.bsymt}}</h3></td>
+                 </tr>
+            <hr>
+        </table>
+        
+            
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
+{% endblock %}
