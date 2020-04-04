@@ -11,3 +11,16 @@ class details_bio(models.Model):
         return self.bcat
         return self.btype
         return self.bsymt
+
+
+class upload_data(models.Model):
+    part_name = models.CharField(max_length = 200)
+    species = models.CharField(max_length = 200)
+    function_tag = models.TextField()
+    geometry = models.FileField(upload_to = 'geometry/')
+    mesh = models.FileField(upload_to = 'mesh/')
+
+    def __str__(self):
+        return self.part_name
+        return self.species
+        return self.function_tag
