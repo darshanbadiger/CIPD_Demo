@@ -7,28 +7,32 @@
 </head>
 
 <body>
-    
-    <h1>Insert Biological Details</h1>
+    <h1>Upload Data to the Database</h1>
+    <p>Only Designers can upload Data </p>
+    <a href="upload"><p>Upload Data</p></a><hr>
+
+    <h1>Insert Other Details</h1>
     <form method="POST">
     {% csrf_token %}
-    <h3>Name : <input type="text" name="name"></h3>
-    <h3>Category : <input type="text" name="category"></h3>
-    <h3>Type : <input type="text" name="c_type"></h3>
-    <h3>Symptoms : <input type="text" name="symptoms"></h3>
-    <input type="submit" value="SUBMIT">
+    <p>Name : <input type="text" name="name"></p>
+    <p>Category : <input type="text" name="category"></p>
+    <p>Type : <input type="text" name="c_type"></p>
+    <p>Symptoms : <input type="text" name="symptoms"></p>
+    <p><input type="button" value="SUBMIT" ></p>
     </form>
+    <hr>
 
-    <h1>Get Biological Data</h1>
+    <h1>Get Information</h1>
     <form method="GET" action="{% url 'data' %}">
         {% csrf_token %}
-        <input type="submit" value="VIEW">
+      <p>  <input type="submit" value="VIEW"></p>
     </form>
 
-    <h1>Search Biological Data</h1>
+    <h1>Search Data</h1><p>(Other Data)</p>
     <form method="POST" action="{% url 'search' %}">
         {% csrf_token %}
-        <input type="text" name = "srh" placeholder="Enter Name or category or type">
-        <input type="submit" value="SEARCH">
+      <p>  <input type="text" name = "srh" placeholder="Enter Name or category or type"></p>
+       <p> <input type="submit" value="SEARCH"></p>
     </form>
   
 </body>
