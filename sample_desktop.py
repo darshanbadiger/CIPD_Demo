@@ -4,29 +4,30 @@ import os
 from tkinter import filedialog
 import subprocess
 os.system('clear')
+import ICP
 
 root = Tk()
-root.title('Test Desktop')
+root.title('Sample Desktop')
 
-
-def hello():
-	hello_label = Label(root, text="hello" + myTextbox.get())
-	hello_label.pack()
-
-def op_file():
-	file1 = filedialog.askopenfile()
-	#f = file1.get(ACTIVE)
-	lab = Label(text = file1).pack()
+def op_file1():
+	root.file1 = filedialog.askopenfilename(initialdir="/home/darshan/", title="select files",filetypes=(("Mesh Files","*.pcd"),("all files","*.*")))
+	lab = Label(text = root.file1).pack()
+	root.file2 = filedialog.askopenfilename(initialdir="/home/darshan/", title="select files",filetypes=(("3D files","*.stl"),("all files","*.*")))
+	lab = Label(text = root.file2).pack()
 	
-	#os.system('/snap/bin/cloudcompare.CloudCompare'+ f)
-	#path_to_open = '/snap/bin/cloudcompare.CloudCompare'
-	#path_to_file = file1
-	#subprocess.call([path_to_open, path_to_file])
-	os.system('/snap/bin/cloudcompare.CloudCompare')
+#	Using ICP Algorithm
+#	C2M=subprocess.Popen(["/snap/bin/cloudcompare.CloudCompare","-SILENT", "-AUTO_SAVE", "ON", "-NO_TIMESTAMP", "-M_EXPORT_FMT", "STL","-COMPUTE_NORMALS", "-O", root.file1, "-O", root.file2, "-ICP","-DELAUNAY"])
+#	Using C2M_DIST Algorithm
+	C2M=subprocess.Popen(["/snap/bin/cloudcompare.CloudCompare","-SILENT", "-AUTO_SAVE", "ON", "-NO_TIMESTAMP", "-M_EXPORT_FMT", "STL","-COMPUTE_NORMALS", "-O", root.file1, "-O", root.file2, "-c2m_dist","-DELAUNAY"])
 
-def get_file():
-	file2 = filedialog.askopenfile()
-	subprocess.Popen('/usr/share/man/man1/blender.1.gz')
+def op_file3():
+	root.file3 = filedialog.askopenfilename(initialdir="/home/darshan/", title="select files",filetypes=(("3D files","*.stl"),("all files","*.*")))
+	lab = Label(text = root.file3).pack()
+	path_to_open3 = '/usr/bin/blender'
+	path_to_file3=os.path.dirname(__file__), root.file3
+	print(path_to_file3)
+	subprocess.Popen([path_to_open3,root.file3])
+
 
 myLabel = Label(root, text="Enter Name:")
 myLabel.pack()
@@ -34,13 +35,10 @@ myLabel.pack()
 myTextbox = Entry(root, width=30)
 myTextbox.pack()
 
-button1 = Button(text="open first file", command=op_file).pack()
-button2 = Button(text="open second file", command=op_file).pack()
-button3 = Button(text="Export from blender", command=get_file).pack()
+button1 = Button(text="open 3D Files", command=op_file1).pack()
+button2 = Button(text="Export to Blender", command=op_file3).pack()
 
 
-myButton = Button(root, text="Submit", command=hello)
-myButton.pack()
 
 
 
