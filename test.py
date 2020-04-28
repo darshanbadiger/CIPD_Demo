@@ -1,18 +1,20 @@
 from tkinter import *
 from tkinter import ttk
-import random
 import time, datetime
-import os
 from tkinter import filedialog
+import random
+import os
 import subprocess
 os.system('clear')
+from tkinter import messagebox
+# showinfo, showwarning, showerroe, askquestion, askokcancel, askyesno
 
 
 root = Tk()
 root.title('Design from Nature')
 root.geometry("1350x750+0+0")
 #root.configure(background='black')
-'''
+
 my_menu = Menu(root)
 root.config(menu=my_menu)
 
@@ -22,18 +24,19 @@ def our_command():
 
 #Create a menu item
 file_menu = Menu(my_menu)
-my_menu.add_cascade(Label="File", menu=file_menu)
 
-file_menu.add_command(Label="New..", command=our_command)
+my_menu.add_cascade(label="File", menu=file_menu)
+
+file_menu.add_command(label="New..", command=our_command)
 file_menu.add_separator()
-file_menu.add_command(Label="Exit", command=root.quit)
+file_menu.add_command(label="Exit", command=root.quit)
 
 
 #Create an edit menu item
 edit_menu=Menu(my_menu)
-my_menu.add_cascade(Label="Edit", menu=edit_menu)
-edit_menu.add_command(Label="Cut", command=our_command)
-edit_menu.add_command(Label="Copy", command=our_command)'''
+my_menu.add_cascade(label="Edit", menu=edit_menu)
+edit_menu.add_command(label="Cut", command=our_command)
+edit_menu.add_command(label="Copy", command=our_command)
 
 Tops = Frame(root, width=1350, height=100, bd=14, relief="raise")
 Tops.pack(side=TOP)
@@ -95,15 +98,15 @@ name_8.grid(row=3,sticky=W)
 
 def op_file1():
 	root.file1 = filedialog.askopenfilename(initialdir="/home/darshan/", title="select files",filetypes=(("Mesh Files","*.pcd"),("all files","*.*")))
-	lab = Label(f2aa, font=('arial', 10, 'bold'),text = root.file1).pack()
-	root.file2 = filedialog.askopenfilename(initialdir="/home/darshan/", title="select files",filetypes=(("3D files","*.stl"),("all files","*.*")))
-	lab = Label(f2aa,font=('arial', 10, 'bold'), text = root.file2).pack()
-	
+	root.file2 = filedialog.askopenfilename(initialdir="/home/darshan/", title="select files",filetypes=(("3D files","*.stl"),("all files","*.*")))	
 #	Using ICP Algorithm
 #	C2M=subprocess.Popen(["/snap/bin/cloudcompare.CloudCompare","-SILENT", "-AUTO_SAVE", "ON", "-NO_TIMESTAMP", "-M_EXPORT_FMT", "STL","-COMPUTE_NORMALS", "-O", root.file1, "-O", root.file2, "-ICP","-DELAUNAY"])
 
 #	Using C2M_DIST Algorithm
 	C2M=subprocess.Popen(["/snap/bin/cloudcompare.CloudCompare","-SILENT", "-AUTO_SAVE", "ON", "-NO_TIMESTAMP", "-M_EXPORT_FMT", "STL","-COMPUTE_NORMALS", "-O", root.file1, "-O", root.file2, "-c2m_dist","-DELAUNAY"])
+	lab = Label(f2aa, font=('arial', 10, 'bold'),text = "Selected file : "+root.file1).pack()
+	lab = Label(f2aa,font=('arial', 10, 'bold'), text ="Selected file : "+root.file2).pack()
+	messagebox.showinfo("Upload Successful!", "Files are Uploaded successfully. Please wait for the processing.")
 
 
 btn_1 = Button(ft2, padx=16, pady=1, bd=4, fg='black', font=('arial', 16, 'bold'),width=5, text="3D File", command=op_file1).grid(row=0, column=0)
@@ -112,7 +115,12 @@ name_5.grid(row=1,sticky=W)
 
 
 def op_f():
-	os.system('blender --python sample1.py')
+	response = messagebox.askquestion("Open Blender!", "Are you want to open blender application externally?")
+	#Label(f2aa, font=('arial', 10, 'bold'), text=response).pack()
+	if response=='yes':
+		Label(f2ab, font=('arial', 10, 'bold'), text="File is opening is Blender. Please Wait!!!").pack()
+		os.system('blender --python sample1.py')
+
 
 btn_2 = Button(fb2, padx=16, pady=1, bd=4, fg='black', font=('arial', 10, 'bold'),width=20, text="Extract to Blender", command=op_f).grid(row=0, column=0)
 name_6 = Label(fb2,font=('arial', 10, 'bold'), text = "File will open in Blender.\t\t     ", bd=10)
