@@ -121,10 +121,11 @@ def op_f():
 		Label(f2ab, font=('arial', 10, 'bold'), text="File is opening is Blender. Please Wait!!!").pack()
 		os.system('blender --python sample1.py')
 
-
-btn_2 = Button(fb2, padx=16, pady=1, bd=4, fg='black', font=('arial', 10, 'bold'),width=20, text="Extract to Blender", command=op_f).grid(row=0, column=0)
+name_9 = Label(fb2, font=('arial',10,'bold'), text="Open a generated file (Result) in Blender.",bd=10)
+name_9.grid(row=0,sticky=W)
+btn_2 = Button(fb2, padx=16, pady=1, bd=4, fg='black', font=('arial', 10, 'bold'),width=20, text="View the Result", command=op_f).grid(row=1, column=0)
 name_6 = Label(fb2,font=('arial', 10, 'bold'), text = "File will open in Blender.\t\t     ", bd=10)
-name_6.grid(row=1,sticky=W)
+name_6.grid(row=2,sticky=W)
 
 '''
 var1 = IntVar()
